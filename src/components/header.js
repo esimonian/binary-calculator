@@ -8,7 +8,7 @@ import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 
-const styleSheet = createStyleSheet('ButtonAppBar', {
+const styleSheet = createStyleSheet('Header', {
   root: {
     position: 'relative',
     width: '100%',
@@ -21,7 +21,7 @@ const styleSheet = createStyleSheet('ButtonAppBar', {
   },
 });
 
-function ButtonAppBar(props) {
+function Header(props) {
   const classes = props.classes;
   return (
     <div className={classes.root}>
@@ -38,8 +38,8 @@ function ButtonAppBar(props) {
   );
 }
 
-ButtonAppBar.propTypes = {
+Header.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(ButtonAppBar);
+export default withStyles(styleSheet)(Header);
