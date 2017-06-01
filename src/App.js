@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
 import Paper from 'material-ui/Paper';
+import Grid from 'material-ui/Grid';
+import TextField from 'material-ui/TextField';
 
 import logo from './logo.svg';
 import './App.css';
-
+import ButtonAppBar from './components/header'
 
 import { converter, convertFloatToBinary, convertIntegerToBinary, convertIntegerToBinarySteps } from './converter/converter'
 
@@ -31,15 +32,14 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider>
-        <div className="App">
-          <AppBar
-            title="Binary Converter"
-            iconClassNameRight="muidocs-icon-navigation-expand-more"
-          />
-          <div>
-            <Paper style={{width: 200, height: '100vh', float: 'left'}} zDepth={4} />
-            <div>
-              <InputBox
+        <Grid container style={{background: '#F0F0F0'}}>
+          <ButtonAppBar />
+          <Grid item xs={3}>
+            <Paper style={{width: '100%', height: '100vh', float: 'left'}} zDepth={4} />
+          </Grid> 
+          <Grid item xs={9}>
+            <div style={{margin: '2em', padding: '2em', textAlign: 'center', background: '#fff'}}>
+               <InputBox
                 state={this.state}
                 radioHandler={conversionType => this.setState({ conversionType })}
                 inputHandler={value => this.setState({ value })}
@@ -49,8 +49,10 @@ class App extends Component {
                 steps={this.state.conversionType == "d2b" ? this.decimalToBinarySteps() : this.binaryToDecimalSteps()} 
               />
             </div>
-          </div>
-        </div>
+           
+          </Grid>
+          
+        </Grid>
       </MuiThemeProvider>
     );
   }
@@ -74,7 +76,7 @@ const InputBox = props => {
         </label>
       </div>
       <div className="form-group">
-        <input type="number"
+        <TextField 
           onChange={ev => props.inputHandler(ev.target.value)}
           className="form-control text-center inputForm" 
           placeholder="Value to Convert"
